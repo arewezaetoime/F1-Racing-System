@@ -7,5 +7,17 @@ namespace F1_Racing_System.Controllers
     [ApiController]
     public class TeamsController : ControllerBase
     {
+        public TeamsController()
+        {
+            
+        }
+
+
+        [HttpGet]
+
+        public async Task<IActionResult> GetAllTeams()
+        {
+
+        }
     }
 }
