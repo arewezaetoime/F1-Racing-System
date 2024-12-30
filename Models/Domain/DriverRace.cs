@@ -1,15 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace F1_Racing_System.Models.Domain
 {
+    [PrimaryKey(nameof(DriverId), nameof(RaceId))]
     public class DriverRace
     {
-        [Key, Column(Order = 0)]
         public int DriverId { get; set; }
         public Driver Driver { get; set; }
 
-        [Key, Column(Order = 1)]
         public int RaceId { get; set; }
         public Race Race { get; set; }
 
