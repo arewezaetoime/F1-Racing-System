@@ -3,6 +3,7 @@ using System;
 using F1_Racing_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace F1RacingSystem.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241230114042_SeedingData1")]
+    partial class SeedingData1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,64 +76,7 @@ namespace F1RacingSystem.Migrations
                         {
                             Id = 4,
                             FirstName = "Fernando",
-                            LastName = "Alonso",
-                            TeamId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            FirstName = "Lando",
-                            LastName = "Norris",
-                            TeamId = 4
-                        },
-                        new
-                        {
-                            Id = 6,
-                            FirstName = "Sebastian",
-                            LastName = "Vettel",
-                            TeamId = 5
-                        },
-                        new
-                        {
-                            Id = 7,
-                            FirstName = "Esteban",
-                            LastName = "Ocon",
-                            TeamId = 6
-                        },
-                        new
-                        {
-                            Id = 8,
-                            FirstName = "Valtteri",
-                            LastName = "Bottas",
-                            TeamId = 7
-                        },
-                        new
-                        {
-                            Id = 9,
-                            FirstName = "Mick",
-                            LastName = "Schumacher",
-                            TeamId = 8
-                        },
-                        new
-                        {
-                            Id = 10,
-                            FirstName = "George",
-                            LastName = "Russell",
-                            TeamId = 1
-                        },
-                        new
-                        {
-                            Id = 11,
-                            FirstName = "Nicholas",
-                            LastName = "Latifi",
-                            TeamId = 9
-                        },
-                        new
-                        {
-                            Id = 12,
-                            FirstName = "Pierre",
-                            LastName = "Gasly",
-                            TeamId = 6
+                            LastName = "Alonso"
                         });
                 });
 
@@ -178,80 +124,38 @@ namespace F1RacingSystem.Migrations
                         },
                         new
                         {
-                            DriverId = 4,
-                            RaceId = 1,
-                            FinishedFor = new TimeSpan(0, 1, 21, 0, 0),
-                            Points = (byte)12
-                        },
-                        new
-                        {
-                            DriverId = 5,
-                            RaceId = 1,
-                            FinishedFor = new TimeSpan(0, 1, 22, 0, 0),
-                            Points = (byte)10
-                        },
-                        new
-                        {
-                            DriverId = 6,
-                            RaceId = 2,
-                            FinishedFor = new TimeSpan(0, 1, 30, 0, 0),
-                            Points = (byte)18
-                        },
-                        new
-                        {
-                            DriverId = 7,
-                            RaceId = 2,
-                            FinishedFor = new TimeSpan(0, 1, 32, 0, 0),
-                            Points = (byte)15
-                        },
-                        new
-                        {
-                            DriverId = 8,
-                            RaceId = 2,
-                            FinishedFor = new TimeSpan(0, 1, 33, 0, 0),
-                            Points = (byte)10
-                        },
-                        new
-                        {
-                            DriverId = 9,
-                            RaceId = 2,
-                            FinishedFor = new TimeSpan(0, 1, 34, 0, 0),
-                            Points = (byte)8
-                        },
-                        new
-                        {
-                            DriverId = 10,
-                            RaceId = 2,
-                            FinishedFor = new TimeSpan(0, 1, 35, 0, 0),
-                            Points = (byte)6
-                        },
-                        new
-                        {
                             DriverId = 1,
-                            RaceId = 3,
+                            RaceId = 2,
                             FinishedFor = new TimeSpan(0, 1, 40, 0, 0),
                             Points = (byte)25
                         },
                         new
                         {
                             DriverId = 2,
-                            RaceId = 3,
-                            FinishedFor = new TimeSpan(0, 1, 42, 0, 0),
+                            RaceId = 2,
+                            FinishedFor = new TimeSpan(0, 1, 41, 0, 0),
                             Points = (byte)18
                         },
                         new
                         {
                             DriverId = 3,
-                            RaceId = 3,
-                            FinishedFor = new TimeSpan(0, 1, 44, 0, 0),
-                            Points = (byte)15
+                            RaceId = 2,
+                            FinishedFor = new TimeSpan(0, 1, 42, 0, 0),
+                            Points = (byte)12
                         },
                         new
                         {
-                            DriverId = 4,
+                            DriverId = 1,
                             RaceId = 3,
-                            FinishedFor = new TimeSpan(0, 1, 46, 0, 0),
-                            Points = (byte)12
+                            FinishedFor = new TimeSpan(0, 2, 0, 0, 0),
+                            Points = (byte)10
+                        },
+                        new
+                        {
+                            DriverId = 2,
+                            RaceId = 3,
+                            FinishedFor = new TimeSpan(0, 1, 58, 0, 0),
+                            Points = (byte)15
                         });
                 });
 
@@ -287,16 +191,6 @@ namespace F1RacingSystem.Migrations
                         {
                             Id = 3,
                             Name = "Italian Grand Prix"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "German Grand Prix"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Spanish Grand Prix"
                         });
                 });
 
@@ -332,36 +226,6 @@ namespace F1RacingSystem.Migrations
                         {
                             Id = 3,
                             Name = "Ferrari"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "McLaren"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Aston Martin"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Alpine"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Alfa Romeo"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Haas"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Williams"
                         });
                 });
 
