@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using F1_Racing_System.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace F1_Racing_System.Controllers
 {
@@ -13,11 +15,10 @@ namespace F1_Racing_System.Controllers
         }
 
 
-        //[HttpGet]
-
-        //public async Task<IActionResult> GetAllTeams()
-        //{
-        //    var allTeamsDomainModel =  
-        //}
+        [HttpGet]
+        public async Task<IActionResult> GetAllTeams()
+        {
+            var allTeamsDomainModel = await AppDbContext.Teams.ToListAsync();
+        }
     }
 }
