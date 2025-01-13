@@ -19,6 +19,24 @@ namespace F1_Racing_System.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<DriverRace>()
+            .HasKey(dr => new { dr.DriverId, dr.RaceId });
+
+        modelBuilder.Entity<Team>()
+            .HasMany(t => t.Drivers)
+            .WithOne(d => d.Team)
+            .HasForeignKey(d => d.TeamId);
+
+        modelBuilder.Entity<Driver>()
+            .HasMany(d => d.DriverRaces)
+            .WithOne(dr => dr.Driver)
+            .HasForeignKey(dr => dr.DriverId);
+
+        modelBuilder.Entity<Race>()
+            .HasMany(r => r.DriverRaces)
+            .WithOne(dr => dr.Race)
+            .HasForeignKey(dr => dr.RaceId);
+
             // Seed data for Teams
             modelBuilder.Entity<Team>().HasData(
                 new Team { Id = 1, Name = "Mercedes" },

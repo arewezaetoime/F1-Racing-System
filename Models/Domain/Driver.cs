@@ -4,7 +4,6 @@ namespace F1_Racing_System.Models.Domain
 {
     public class Driver
     {
-        [Key]
         public int Id { get; set; }
 
         [Required]
