@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using F1_Racing_System.Models.Domain;
+using AutoMapper;
+using F1_Racing_System.Models.Dto;
 
 namespace F1_Racing_System.Controllers
 {
@@ -11,16 +13,23 @@ namespace F1_Racing_System.Controllers
     public class TeamsController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly IMapper _mapper;
 
-        public TeamsController(AppDbContext context)
+        public TeamsController(AppDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Team>>> GetTeams()
         {
-            return await _context.Teams.Include(t => t.Drivers).ToListAsync();
+            var teamDomainModels = await _context.Teams.Include(t => t.Drivers).ToListAsync();
+
+            var teamsDtos = _mapper.Map<List<TeamDto>>(teamDomainModels);
+
+            return Ok(teamsDtos);
+            
         }
 
         [HttpGet("{teamId}")]
