@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using F1_Racing_System.Models.Domain;
 using AutoMapper;
 using F1_Racing_System.Models.Dto;
+using F1_Racing_System.Repositories;
 
 namespace F1_Racing_System.Controllers
 {
@@ -12,37 +13,31 @@ namespace F1_Racing_System.Controllers
     [ApiController]
     public class TeamsController : ControllerBase
     {
-        private readonly AppDbContext _context;
         private readonly IMapper _mapper;
+        private readonly TeamRepository _teamRepository;
 
-        public TeamsController(AppDbContext context, IMapper mapper)
+        public TeamsController(IMapper mapper, TeamRepository teamRepository)
         {
-            _context = context;
             _mapper = mapper;
+            _teamRepository = teamRepository;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Team>>> GetTeams()
         {
-            var teamDomainModels = await _context.Teams.Include(t => t.Drivers).ToListAsync();
+            var teamDomainModels = await _teamRepository.GetTeamsAsync();
 
             var teamsDtos = _mapper.Map<List<TeamDto>>(teamDomainModels);
 
             return Ok(teamsDtos);
             
         }
-
-        [HttpGet("{teamId}")]
-        public async Task<ActionResult<Team>> GetTeam(int teamId)
+            
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<ActionResult<Team?>> GetTeam(int teamId)
         {
-            var team = await _context.Teams
-                .Include(t => t.Drivers)
-                .FirstOrDefaultAsync(t => t.Id == teamId);
-
-            if (team == null)
-                return NotFound();
-
-            return team;
+            var team = await _teamRepository.Gettem
         }
 
         [HttpPost]
