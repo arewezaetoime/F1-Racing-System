@@ -1,6 +1,7 @@
 using AutoMapper;
 using F1_Racing_System.Models.Domain;
 using F1_Racing_System.Models.Dto;
+using F1_Racing_System.Models.Dto.Team;
 
 
 namespace F1_Racing_System.Mappings
@@ -10,7 +11,7 @@ namespace F1_Racing_System.Mappings
         public AutomapperProfiles()
         {
             CreateMap<Team, TeamDto>().ReverseMap();
-
+            CreateMap<Team, CreateTeamDto>().ReverseMap();
         }
     }
 }

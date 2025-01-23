@@ -30,10 +30,5 @@ namespace F1_Racing_System.Repositories
         {
             return await _context.Teams.ToListAsync();
         }
-
-        internal async Task GetTeamById(int teamId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

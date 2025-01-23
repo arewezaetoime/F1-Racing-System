@@ -2,6 +2,7 @@
 using F1_Racing_System.Data;
 using Microsoft.EntityFrameworkCore;
 using F1_Racing_System.Mappings;
+using F1_Racing_System.Repositories;
 
 
 namespace F1_Racing_System
@@ -16,6 +17,7 @@ namespace F1_Racing_System
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddAutoMapper(typeof(AutomapperProfiles));
+            builder.Services.AddScoped<ITeamRepository, TeamRepository>();
 
 
             builder.Services.AddControllers();

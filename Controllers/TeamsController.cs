@@ -6,6 +6,7 @@ using F1_Racing_System.Models.Domain;
 using AutoMapper;
 using F1_Racing_System.Models.Dto;
 using F1_Racing_System.Repositories;
+using F1_Racing_System.Models.Dto.Team;
 
 namespace F1_Racing_System.Controllers
 {
@@ -14,9 +15,9 @@ namespace F1_Racing_System.Controllers
     public class TeamsController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly TeamRepository _teamRepository;
+        private readonly ITeamRepository _teamRepository;
 
-        public TeamsController(IMapper mapper, TeamRepository teamRepository)
+        public TeamsController(IMapper mapper, ITeamRepository teamRepository)
         {
             _mapper = mapper;
             _teamRepository = teamRepository;
@@ -30,21 +31,32 @@ namespace F1_Racing_System.Controllers
             var teamsDtos = _mapper.Map<List<TeamDto>>(teamDomainModels);
 
             return Ok(teamsDtos);
-            
+
         }
-            
+
         [HttpGet]
         [Route("{id:int}")]
-        public async Task<ActionResult<Team?>> GetTeam(int teamId)
+        public async Task<ActionResult<Team?>> GetTeam(int id)
         {
-            var team = await _teamRepository.Gettem
+            var team = await _teamRepository.GetTeamByIdAsync(id);
+
+            if (team == null)
+            {
+                return NotFound();
+            }
+
+            var teamDto = _mapper.Map<TeamDto>(team);
+
+            return Ok(teamDto);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Team>> CreateTeam(Team team)
+        public async Task<ActionResult<Team>> CreateTeam(CreateTeamDto createTeamDto)
         {
-            _context.Teams.Add(team);
-            await _context.SaveChangesAsync();
+            var teamDomainModel = _mapper.Map<Team>(createTeamDto);
+            var team = await _teamRepository.CreateTeamAsync(teamDomainModel);
+            var teamDto = _mapper.Map<TeamDto>(team);
+
             return CreatedAtAction(nameof(GetTeam), new { teamId = team.Id }, team);
         }
     }
