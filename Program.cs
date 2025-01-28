@@ -18,6 +18,7 @@ namespace F1_Racing_System
             builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddAutoMapper(typeof(AutomapperProfiles));
             builder.Services.AddScoped<ITeamRepository, TeamRepository>();
+            builder.Services.AddScoped<IDriverRepository, DriverRepository>();
 
 
             builder.Services.AddControllers();

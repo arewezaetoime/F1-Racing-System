@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
-namespace F1_Racing_System.Models.Domain
+namespace F1_Racing_System.Models.Dto.Driver
 {
-    public class Driver
+    public class DriverDto
     {
         public int Id { get; set; }
 
@@ -13,8 +13,9 @@ namespace F1_Racing_System.Models.Domain
         public string LastName { get; set; }
 
         public int? TeamId { get; set; }
-        public Team Team { get; set; }
 
-        public ICollection<DriverRace> DriverRaces { get; set; }
+        // public string? TeamName { get; set; }
+
+        // public int? TotalPoints { get; set; }
     }
 }

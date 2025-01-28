@@ -1,5 +1,6 @@
 ﻿using F1_Racing_System.Data;
 using F1_Racing_System.Models.Domain;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -14,7 +15,7 @@ namespace F1_Racing_System.Repositories
             _context = context;
         }
 
-        async Task<Team> ITeamRepository.CreateTeamAsync(Team team)
+        public async Task<Team> CreateTeamAsync(Team team)
         {
             await _context.Teams.AddAsync(team);
             await _context.SaveChangesAsync();
@@ -23,12 +24,18 @@ namespace F1_Racing_System.Repositories
 
         async Task<Team?> ITeamRepository.GetTeamByIdAsync(int id)
         {
-            return await _context.Teams.FirstOrDefaultAsync(x => x.Id == id);
+            var team = await _context.Teams
+            .Include(d => d.Drivers)
+            .FirstOrDefaultAsync(x => x.Id == id);
+
+            return team;
         }
 
         public async Task<List<Team>> GetTeamsAsync()
         {
-            return await _context.Teams.ToListAsync();
+            return await _context.Teams
+            .Include(t => t.Drivers)
+            .ToListAsync();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace F1_Racing_System.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Team>>> GetTeams()
+        public async Task<ActionResult<IEnumerable<TeamDto>>> GetTeams()
         {
             var teamDomainModels = await _teamRepository.GetTeamsAsync();
 
@@ -36,7 +36,7 @@ namespace F1_Racing_System.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        public async Task<ActionResult<Team?>> GetTeam(int id)
+        public async Task<ActionResult<TeamDto?>> GetTeam(int id)
         {
             var team = await _teamRepository.GetTeamByIdAsync(id);
 
@@ -57,7 +57,7 @@ namespace F1_Racing_System.Controllers
             var team = await _teamRepository.CreateTeamAsync(teamDomainModel);
             var teamDto = _mapper.Map<TeamDto>(team);
 
-            return CreatedAtAction(nameof(GetTeam), new { teamId = team.Id }, team);
+            return CreatedAtAction("GetTeam", new { teamId = team.Id }, team);
         }
     }
 }

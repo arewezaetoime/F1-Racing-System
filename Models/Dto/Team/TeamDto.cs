@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using F1_Racing_System.Models.Domain;
+using F1_Racing_System.Models.Dto.Driver;
 
 namespace F1_Racing_System.Models.Dto
 {
@@ -13,6 +14,6 @@ namespace F1_Racing_System.Models.Dto
         public string Name { get; set; }
 
         // Navigation property
-        public ICollection<Driver> Drivers { get; set; }
+        public ICollection<DriverDto> Drivers { get; set; }
     }
 }
