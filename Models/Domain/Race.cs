@@ -11,7 +11,6 @@ namespace F1_Racing_System.Models.Domain
         [MaxLength(20)]
         public string Name { get; set; }
 
-        // Navigation property
-        public ICollection<DriverRace> DriverRaces { get; set; }
+        public virtual ICollection<DriverRace> DriverRaces { get; set; }
     }
 }

@@ -39,6 +39,7 @@ namespace F1RacingSystem.Migrations
                         .HasColumnType("text");
 
                     b.Property<int?>("TeamId")
+                        .IsRequired()
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -145,7 +146,7 @@ namespace F1RacingSystem.Migrations
                     b.Property<TimeSpan?>("FinishedFor")
                         .HasColumnType("interval");
 
-                    b.Property<byte>("Points")
+                    b.Property<short>("Points")
                         .HasColumnType("smallint");
 
                     b.HasKey("DriverId", "RaceId");
@@ -160,98 +161,98 @@ namespace F1RacingSystem.Migrations
                             DriverId = 1,
                             RaceId = 1,
                             FinishedFor = new TimeSpan(0, 1, 18, 0, 0),
-                            Points = (byte)25
+                            Points = (short)25
                         },
                         new
                         {
                             DriverId = 2,
                             RaceId = 1,
                             FinishedFor = new TimeSpan(0, 1, 19, 0, 0),
-                            Points = (byte)18
+                            Points = (short)18
                         },
                         new
                         {
                             DriverId = 3,
                             RaceId = 1,
                             FinishedFor = new TimeSpan(0, 1, 20, 0, 0),
-                            Points = (byte)15
+                            Points = (short)15
                         },
                         new
                         {
                             DriverId = 4,
                             RaceId = 1,
                             FinishedFor = new TimeSpan(0, 1, 21, 0, 0),
-                            Points = (byte)12
+                            Points = (short)12
                         },
                         new
                         {
                             DriverId = 5,
                             RaceId = 1,
                             FinishedFor = new TimeSpan(0, 1, 22, 0, 0),
-                            Points = (byte)10
+                            Points = (short)10
                         },
                         new
                         {
                             DriverId = 6,
                             RaceId = 2,
                             FinishedFor = new TimeSpan(0, 1, 30, 0, 0),
-                            Points = (byte)18
+                            Points = (short)18
                         },
                         new
                         {
                             DriverId = 7,
                             RaceId = 2,
                             FinishedFor = new TimeSpan(0, 1, 32, 0, 0),
-                            Points = (byte)15
+                            Points = (short)15
                         },
                         new
                         {
                             DriverId = 8,
                             RaceId = 2,
                             FinishedFor = new TimeSpan(0, 1, 33, 0, 0),
-                            Points = (byte)10
+                            Points = (short)10
                         },
                         new
                         {
                             DriverId = 9,
                             RaceId = 2,
                             FinishedFor = new TimeSpan(0, 1, 34, 0, 0),
-                            Points = (byte)8
+                            Points = (short)8
                         },
                         new
                         {
                             DriverId = 10,
                             RaceId = 2,
                             FinishedFor = new TimeSpan(0, 1, 35, 0, 0),
-                            Points = (byte)6
+                            Points = (short)6
                         },
                         new
                         {
                             DriverId = 1,
                             RaceId = 3,
                             FinishedFor = new TimeSpan(0, 1, 40, 0, 0),
-                            Points = (byte)25
+                            Points = (short)25
                         },
                         new
                         {
                             DriverId = 2,
                             RaceId = 3,
                             FinishedFor = new TimeSpan(0, 1, 42, 0, 0),
-                            Points = (byte)18
+                            Points = (short)18
                         },
                         new
                         {
                             DriverId = 3,
                             RaceId = 3,
                             FinishedFor = new TimeSpan(0, 1, 44, 0, 0),
-                            Points = (byte)15
+                            Points = (short)15
                         },
                         new
                         {
                             DriverId = 4,
                             RaceId = 3,
                             FinishedFor = new TimeSpan(0, 1, 46, 0, 0),
-                            Points = (byte)12
+                            Points = (short)12
                         });
                 });
 
@@ -369,7 +370,9 @@ namespace F1RacingSystem.Migrations
                 {
                     b.HasOne("F1_Racing_System.Models.Domain.Team", "Team")
                         .WithMany("Drivers")
-                        .HasForeignKey("TeamId");
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Team");
                 });

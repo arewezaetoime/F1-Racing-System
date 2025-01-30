@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace F1RacingSystem.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241230113601_SeedingData")]
-    partial class SeedingData
+    [Migration("20250130195916_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,6 +42,7 @@ namespace F1RacingSystem.Migrations
                         .HasColumnType("text");
 
                     b.Property<int?>("TeamId")
+                        .IsRequired()
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -62,7 +63,7 @@ namespace F1RacingSystem.Migrations
                     b.Property<TimeSpan?>("FinishedFor")
                         .HasColumnType("interval");
 
-                    b.Property<byte>("Points")
+                    b.Property<short>("Points")
                         .HasColumnType("smallint");
 
                     b.HasKey("DriverId", "RaceId");
@@ -112,7 +113,9 @@ namespace F1RacingSystem.Migrations
                 {
                     b.HasOne("F1_Racing_System.Models.Domain.Team", "Team")
                         .WithMany("Drivers")
-                        .HasForeignKey("TeamId");
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Team");
                 });

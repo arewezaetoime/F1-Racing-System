@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace F1RacingSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -46,7 +46,7 @@ namespace F1RacingSystem.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     FirstName = table.Column<string>(type: "text", nullable: false),
                     LastName = table.Column<string>(type: "text", nullable: false),
-                    TeamId = table.Column<int>(type: "integer", nullable: true)
+                    TeamId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,7 +55,8 @@ namespace F1RacingSystem.Migrations
                         name: "FK_Drivers_Teams_TeamId",
                         column: x => x.TeamId,
                         principalTable: "Teams",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,7 +66,7 @@ namespace F1RacingSystem.Migrations
                     DriverId = table.Column<int>(type: "integer", nullable: false),
                     RaceId = table.Column<int>(type: "integer", nullable: false),
                     FinishedFor = table.Column<TimeSpan>(type: "interval", nullable: true),
-                    Points = table.Column<byte>(type: "smallint", nullable: false)
+                    Points = table.Column<short>(type: "smallint", nullable: false)
                 },
                 constraints: table =>
                 {
