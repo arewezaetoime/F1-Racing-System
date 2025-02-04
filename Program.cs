@@ -19,6 +19,7 @@ namespace F1_Racing_System
             builder.Services.AddAutoMapper(typeof(AutomapperProfiles));
             builder.Services.AddScoped<ITeamRepository, TeamRepository>();
             builder.Services.AddScoped<IDriverRepository, DriverRepository>();
+            builder.Services.AddScoped<IRaceRepository, RaceRepository>();
 
 
             builder.Services.AddControllers();

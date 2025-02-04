@@ -31,7 +31,7 @@ namespace F1_Racing_System.Controllers
             }
 
             var raceDto = _mapper.Map<RaceDto>(race);
-            return CreatedAtAction(nameof(GetRaceByIdAsync), new { id = race.Id }, raceDto);
+            return CreatedAtAction("GetRaceByIdAsync", new { id = race.Id }, raceDto);
         }
 
         [HttpGet("{id}")]
