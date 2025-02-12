@@ -37,12 +37,28 @@ namespace F1_Racing_System.Repositories
         }
 
 
-        Task<Driver> IRaceRepository.EnrollDriverAsync(RegisterDriverDto registerDriverDto)
+        async Task<DriverRace> IRaceRepository.EnrollDriverAsync(int id)
         {
-            throw new NotImplementedException();
+            var driver = await _context.Drivers.FindAsync(id);
+            var race = await _context.Races.FindAsync(id);
+
+            if (driver == null || race == null)
+                return null;
+
+            var driverRace = new DriverRace
+            {
+                DriverId = driver.Id,
+                RaceId = race.Id,
+                Points = 0
+            };
+
+            await _context.DriverRaces.AddAsync(driverRace);
+            await _context.SaveChangesAsync();
+
+            return driverRace;
         }
 
-        Task<List<Driver>> IRaceRepository.GetFinalResultsAsync()
+        async Task<List<Driver>> IRaceRepository.GetFinalResultsAsync()
         {
             throw new NotImplementedException();
         }

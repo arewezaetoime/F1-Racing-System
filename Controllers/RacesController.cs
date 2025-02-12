@@ -47,5 +47,18 @@ namespace F1_Racing_System.Controllers
             return Ok(_mapper.Map<RaceDto>(race));
         }
 
+        [HttpPost("enrol/{driverId}")]
+        public async Task<ActionResult> EnrollDriverForRace(int driverId)
+        {
+            var driverRace = await _raceRepository.EnrollDriverAsync(driverId);
+
+            if (driverRace == null)
+            {
+                return NotFound();
+            }
+            
+            return Ok(driverRace);
+        }
+
     }
 }

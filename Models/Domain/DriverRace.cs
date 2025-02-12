@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace F1_Racing_System.Models.Domain
 {
+    [PrimaryKey(nameof(DriverId), nameof(RaceId))]
     public class DriverRace
     {
         [Required]

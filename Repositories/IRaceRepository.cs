@@ -11,7 +11,7 @@ namespace F1_Racing_System.Repositories
     {
         Task<Race> CreateRaceAsync(CreateRaceDto createRaceDto);
         Task<Race?> GetRaceByIdAsync(int id);
-        Task<Driver> EnrollDriverAsync(RegisterDriverDto registerDriverDto);
+        Task<DriverRace> EnrollDriverAsync(int id);
         Task<List<Driver>> GetFinalResultsAsync();
     }
 }
