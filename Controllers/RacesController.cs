@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using F1_Racing_System.Models.Domain;
+using F1_Racing_System.Models.Dto.Driver;
 using F1_Racing_System.Models.Dto.Race;
 using F1_Racing_System.Repositories;
 using Microsoft.AspNetCore.Http;
@@ -13,11 +14,13 @@ namespace F1_Racing_System.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IRaceRepository _raceRepository;
+        private readonly IDriverRepository _driverRepository;
 
-        public RacesController(IMapper mapper, IRaceRepository raceRepository)
+        public RacesController(IMapper mapper, IRaceRepository raceRepository, IDriverRepository driverRepository)
         {
             _mapper = mapper;
             _raceRepository = raceRepository;
+            _driverRepository = driverRepository;
         }
 
         [HttpPost]
@@ -47,17 +50,20 @@ namespace F1_Racing_System.Controllers
             return Ok(_mapper.Map<RaceDto>(race));
         }
 
-        [HttpPost("enrol/{driverId}")]
-        public async Task<ActionResult> EnrollDriverForRace(int driverId)
+        [HttpPost("{raceId}/enroll/{driverId}")]
+        public async Task<ActionResult> EnrollDriverForRace(int raceId, int driverId)
         {
-            var driverRace = await _raceRepository.EnrollDriverAsync(driverId);
+            var driverRace = await _raceRepository.EnrollDriverAsync(driverId, raceId);
 
             if (driverRace == null)
             {
-                return NotFound();
+                return BadRequest(new
+                {
+                    message = "Unable to enroll driver. Either the driver/race doesn't exist, or the driver is already enrolled in this race."
+                });
             }
-            
-            return Ok(driverRace);
+
+            return Ok(_mapper.Map<DriverRaceDto>(driverRace));
         }
 
     }

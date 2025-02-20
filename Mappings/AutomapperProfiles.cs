@@ -18,6 +18,9 @@ namespace F1_Racing_System.Mappings
             CreateMap<Driver, CreateDriverDto>().ReverseMap();
             CreateMap<Race, RaceDto>().ReverseMap();
             CreateMap<CreateRaceDto, Race>().ReverseMap();
+            CreateMap<DriverRace, DriverRaceDto>()
+                .ForMember(dest => dest.DriverName, opt => opt.MapFrom(src => $"{src.Driver.FirstName} {src.Driver.LastName}"))
+                .ForMember(dest => dest.RaceName, opt => opt.MapFrom(src => src.Race.Name));
         }
     }
 }

@@ -3,6 +3,7 @@ using F1_Racing_System.Data;
 using Microsoft.EntityFrameworkCore;
 using F1_Racing_System.Mappings;
 using F1_Racing_System.Repositories;
+using System.Text.Json.Serialization;
 
 
 namespace F1_Racing_System
@@ -20,6 +21,12 @@ namespace F1_Racing_System
             builder.Services.AddScoped<ITeamRepository, TeamRepository>();
             builder.Services.AddScoped<IDriverRepository, DriverRepository>();
             builder.Services.AddScoped<IRaceRepository, RaceRepository>();
+            builder.Services.AddControllers().AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+        // OR to ignore cycles
+        // options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    });
 
 
             builder.Services.AddControllers();

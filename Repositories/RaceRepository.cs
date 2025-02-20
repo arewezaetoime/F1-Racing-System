@@ -37,24 +37,31 @@ namespace F1_Racing_System.Repositories
         }
 
 
-        async Task<DriverRace> IRaceRepository.EnrollDriverAsync(int id)
+        public async Task<DriverRace> EnrollDriverAsync(int driverId, int raceId)
         {
-            var driver = await _context.Drivers.FindAsync(id);
-            var race = await _context.Races.FindAsync(id);
-
-            if (driver == null || race == null)
+            var driver = await _context.Drivers.FindAsync(driverId);
+            if (driver == null)
                 return null;
+
+            var race = await _context.Races.FindAsync(raceId);
+            if (race == null)
+                return null;
+
+            var existingEnrollment = await _context.DriverRaces
+                .FirstOrDefaultAsync(dr => dr.DriverId == driverId && dr.RaceId == raceId);
+                
+            if (existingEnrollment != null)
+                return null;  // Driver is already enrolled
 
             var driverRace = new DriverRace
             {
-                DriverId = driver.Id,
-                RaceId = race.Id,
+                DriverId = driverId,
+                RaceId = raceId,
                 Points = 0
             };
 
             await _context.DriverRaces.AddAsync(driverRace);
             await _context.SaveChangesAsync();
-
             return driverRace;
         }
 
