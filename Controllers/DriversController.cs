@@ -37,9 +37,7 @@ namespace F1_Racing_System.Controllers
             var driverDomainModel = await _driverRepository.GetDriverByIdAsync(id);
 
             if (driverDomainModel == null)
-            {
                 return NotFound();
-            }
 
             var driverDto = _mapper.Map<DriverDto>(driverDomainModel);
             return Ok(driverDto);

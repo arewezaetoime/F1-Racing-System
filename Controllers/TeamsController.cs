@@ -41,9 +41,7 @@ namespace F1_Racing_System.Controllers
             var team = await _teamRepository.GetTeamByIdAsync(id);
 
             if (team == null)
-            {
                 return NotFound();
-            }
 
             var teamDto = _mapper.Map<TeamDto>(team);
 

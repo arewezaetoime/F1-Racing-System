@@ -29,9 +29,7 @@ namespace F1_Racing_System.Controllers
             var race = await _raceRepository.CreateRaceAsync(createRaceDto);
 
             if (race == null)
-            {
                 return BadRequest("Failed to create race.");
-            }
 
             var raceDto = _mapper.Map<RaceDto>(race);
             return CreatedAtAction("GetRaceByIdAsync", new { id = race.Id }, raceDto);
@@ -43,9 +41,7 @@ namespace F1_Racing_System.Controllers
             var race = await _raceRepository.GetRaceByIdAsync(id);
 
             if (race == null)
-            {
                 return NotFound();
-            }
 
             return Ok(_mapper.Map<RaceDto>(race));
         }
@@ -56,12 +52,10 @@ namespace F1_Racing_System.Controllers
             var driverRace = await _raceRepository.EnrollDriverAsync(driverId, raceId);
 
             if (driverRace == null)
-            {
                 return BadRequest(new
                 {
                     message = "Unable to enroll driver. Either the driver/race doesn't exist, or the driver is already enrolled in this race."
                 });
-            }
 
             return Ok(_mapper.Map<DriverRaceDto>(driverRace));
         }
