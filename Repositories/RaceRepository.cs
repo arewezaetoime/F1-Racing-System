@@ -67,6 +67,54 @@ namespace F1_Racing_System.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<bool> SaveRaceResultsAsync(RaceResultsDto raceResultsDto)
+        {
+            var race = await _context.Races
+                .Include(r => r.DriverRaces)
+                .FirstOrDefaultAsync(r => r.Id == raceResultsDto.RaceId);
+
+            if (race == null)
+                return false;
+
+            var sortedResults = raceResultsDto.Results
+                .OrderBy(r => r.FinishedFor)
+                .ToList();
+
+            for (int i = 0; i < sortedResults.Count; i++)
+            {
+                var result = sortedResults[i];
+                var position = i + 1;
+                var points = (short)(20 - position);
+
+                if (points < 0) points = 0; 
+
+                var driverRace = await _context.DriverRaces
+                    .FirstOrDefaultAsync(dr =>
+                        dr.RaceId == raceResultsDto.RaceId &&
+                        dr.DriverId == result.DriverId);
+
+                if (driverRace == null)
+                {
+                    driverRace = new DriverRace
+                    {
+                        DriverId = result.DriverId,
+                        RaceId = raceResultsDto.RaceId,
+                        Points = points,
+                        FinishedFor = result.FinishedFor
+                    };
+                    await _context.DriverRaces.AddAsync(driverRace);
+                }
+                else
+                {
+                    driverRace.FinishedFor = result.FinishedFor;
+                    driverRace.Points = points;
+                }
+            }
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }
 

@@ -13,5 +13,6 @@ namespace F1_Racing_System.Repositories
         Task<Race?> GetRaceByIdAsync(int id);
         Task<DriverRace> EnrollDriverAsync(int driverId, int raceId);
         Task<List<Driver>> GetFinalResultsAsync();
+        Task<bool> SaveRaceResultsAsync(RaceResultsDto raceResultsDto);
     }
 }

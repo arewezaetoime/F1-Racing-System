@@ -60,5 +60,19 @@ namespace F1_Racing_System.Controllers
             return Ok(_mapper.Map<DriverRaceDto>(driverRace));
         }
 
+        [HttpPost("result")]
+        public async Task<ActionResult> PostRaceResults([FromBody] RaceResultsDto raceResultsDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var success = await _raceRepository.SaveRaceResultsAsync(raceResultsDto);
+
+            if (!success)
+                return NotFound("Race not found");
+
+            return Ok("Race results saved successfully");
+        }
+
     }
 }
