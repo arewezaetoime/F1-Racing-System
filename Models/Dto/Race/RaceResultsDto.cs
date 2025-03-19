@@ -15,3 +15,21 @@ namespace F1_Racing_System.Models.Dto.Race
         public List<RaceResultDto> Results { get; set; }
     }
 }
+
+// {
+//   "raceId": 2,
+//   "Results": [
+//     {
+//       "driverId": 1,
+//       "finishedFor": "01:32:03"
+//     },
+//     {
+//       "driverId": 2,
+//       "finishedFor": "01:32:10"
+//     },
+//     {
+//       "driverId": 3,
+//       "finishedFor": "01:32:15"
+//     }
+//   ]
+// }
