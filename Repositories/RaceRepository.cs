@@ -42,14 +42,12 @@ namespace F1_Racing_System.Repositories
             var driver = await _context.Drivers.FindAsync(driverId);
             var race = await _context.Races.FindAsync(raceId);
 
-            if (race == null || driver == null)
-                return null;
+            if (race is null || driver is null) return null;
 
             var existingEnrollment = await _context.DriverRaces
                 .FirstOrDefaultAsync(dr => dr.DriverId == driverId && dr.RaceId == raceId);
 
-            if (existingEnrollment != null)
-                return null;
+            if (existingEnrollment is not null) return null;
 
             var driverRace = new DriverRace
             {
@@ -74,8 +72,7 @@ namespace F1_Racing_System.Repositories
                 .Include(r => r.DriverRaces)
                 .FirstOrDefaultAsync(r => r.Id == raceResultsDto.RaceId);
 
-            if (race == null)
-                return false;
+            if (race is null) return false;
 
             var sortedResults = raceResultsDto.Results
                 .OrderBy(r => r.FinishedFor)

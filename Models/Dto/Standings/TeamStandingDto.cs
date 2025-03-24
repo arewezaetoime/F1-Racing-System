@@ -10,3 +10,4 @@ namespace F1_Racing_System.Models.Dto.Standings
         public string TeamName { get; set; }
         public int TotalPoints { get; set; }
     }
+}

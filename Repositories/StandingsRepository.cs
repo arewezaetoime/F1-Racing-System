@@ -2,15 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using F1_Racing_System.Data;
 using F1_Racing_System.Models.Dto.Standings;
+using Microsoft.EntityFrameworkCore;
 
 namespace F1_Racing_System.Repositories
 {
     public class StandingsRepository : IStandingsRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly AppDbContext _context;
 
-        public StandingsRepository(ApplicationDbContext context)
+        public StandingsRepository(AppDbContext context)
         {
             _context = context;
         }
@@ -29,6 +31,8 @@ namespace F1_Racing_System.Repositories
                 .OrderByDescending(s => s.TotalPoints)
                 .ToListAsync();
 
+            if (driverStandings is null) return null;
+
             return driverStandings;
         }
 
@@ -44,6 +48,8 @@ namespace F1_Racing_System.Repositories
                 })
                 .OrderByDescending(s => s.TotalPoints)
                 .ToListAsync();
+
+            if (teamStandings is null) return null;
 
             return teamStandings;
         }

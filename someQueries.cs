@@ -11,21 +11,21 @@
 // ORDER BY "TotalPoints" DESC;
 
 //Entity queries
-var teamRankings = await _context.Teams
-    .Select(t => new
-    {
-        TeamId = t.Id,
-        TeamName = t.Name,
-        TotalPoints = t.Drivers
-            .SelectMany(d => d.DriverRaces)
-            .Sum(dr => (int?)dr.Points) ?? 0
-    })
-    .OrderByDescending(t => t.TotalPoints)
-    .Select((t, index) => new
-    {
-        t.TeamId,
-        t.TeamName,
-        t.TotalPoints,
-        Ranking = index + 1
-    })
-    .ToListAsync();
+// var teamRankings = await _context.Teams
+//     .Select(t => new
+//     {
+//         TeamId = t.Id,
+//         TeamName = t.Name,
+//         TotalPoints = t.Drivers
+//             .SelectMany(d => d.DriverRaces)
+//             .Sum(dr => (int?)dr.Points) ?? 0
+//     })
+//     .OrderByDescending(t => t.TotalPoints)
+//     .Select((t, index) => new
+//     {
+//         t.TeamId,
+//         t.TeamName,
+//         t.TotalPoints,
+//         Ranking = index + 1
+//     })
+//     .ToListAsync();

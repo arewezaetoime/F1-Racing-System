@@ -32,4 +32,5 @@ namespace F1_Racing_System.Controllers
             var standings = await _standingsRepository.GetTeamStandingsAsync();
             return Ok(standings);
         }
+    }
 }
