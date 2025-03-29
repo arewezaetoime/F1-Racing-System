@@ -32,11 +32,11 @@ namespace F1_Racing_System.Controllers
                 return BadRequest("Failed to create race.");
 
             var raceDto = _mapper.Map<RaceDto>(race);
-            return CreatedAtAction("GetRaceByIdAsync", new { id = race.Id }, raceDto);
+            return CreatedAtRoute("GetRaceByIdRoute", new { id = race.Id }, raceDto);
         }
 
-        [HttpGet("{id}")]
-        private async Task<ActionResult<RaceDto>> GetRaceByIdAsync(int id)
+        [HttpGet("{id}", Name = "GetRaceByIdRoute")]
+        public async Task<ActionResult<RaceDto>> GetRaceByIdAsync(int id)
         {
             var race = await _raceRepository.GetRaceByIdAsync(id);
 
