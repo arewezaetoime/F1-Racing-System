@@ -35,7 +35,7 @@ namespace F1_Racing_System.Controllers
             return CreatedAtRoute("GetRaceByIdRoute", new { id = race.Id }, raceDto);
         }
 
-        [HttpGet("{id}", Name = "GetRaceByIdRoute")]
+        [HttpGet("{id:int}", Name = "GetRaceByIdRoute")]
         public async Task<ActionResult<RaceDto>> GetRaceByIdAsync(int id)
         {
             var race = await _raceRepository.GetRaceByIdAsync(id);

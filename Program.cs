@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using F1_Racing_System.Mappings;
 using F1_Racing_System.Repositories;
 using System.Text.Json.Serialization;
+using Serilog;
+using Microsoft.AspNetCore.Diagnostics;
 
 
 namespace F1_Racing_System
@@ -13,6 +15,15 @@ namespace F1_Racing_System
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            var logger = new LoggerConfiguration()
+                .WriteTo.Console()
+                .WriteTo.File("Logs/f1_api_log.txt", rollingInterval: RollingInterval.Day)
+                .MinimumLevel.Information()
+                .CreateLogger();
+
+            builder.Logging.ClearProviders();
+            builder.Logging.AddSerilog(logger);
 
             // Add services to the container.
 
@@ -43,7 +54,7 @@ namespace F1_Racing_System
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseMiddleware<Middlewares.ExceptionHandlerMiddleware>();    
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
