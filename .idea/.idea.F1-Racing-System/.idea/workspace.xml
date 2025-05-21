@@ -10,14 +10,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a02616f-6824-41f5-aa51-a69703dbbecd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.F1-Racing-System.dir/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.F1-Racing-System.dir/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.F1-Racing-System.dir/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/F1-Racing-System.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/F1-Racing-System.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Properties/launchSettings.json" afterDir="false" />
-    </list>
+    <list default="true" id="8a02616f-6824-41f5-aa51-a69703dbbecd" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -147,7 +140,7 @@
       <updated>1746522394725</updated>
       <workItem from="1746522395747" duration="10012000" />
       <workItem from="1747597900569" duration="1934000" />
-      <workItem from="1747857374414" duration="459000" />
+      <workItem from="1747857374414" duration="1063000" />
     </task>
     <servers />
   </component>
