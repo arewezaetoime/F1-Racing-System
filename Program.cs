@@ -4,7 +4,6 @@ using F1_Racing_System.Mappings;
 using F1_Racing_System.Repositories;
 using System.Text.Json.Serialization;
 using Serilog;
-using Microsoft.AspNetCore.Diagnostics;
 
 namespace F1_Racing_System
 {
