@@ -12,8 +12,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8a02616f-6824-41f5-aa51-a69703dbbecd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.F1-Racing-System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.F1-Racing-System/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/F1-Racing-System.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/F1-Racing-System.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +144,7 @@
       <workItem from="1746522395747" duration="10012000" />
       <workItem from="1747597900569" duration="1934000" />
       <workItem from="1747857374414" duration="12595000" />
-      <workItem from="1749586340480" duration="3968000" />
+      <workItem from="1749586340480" duration="10432000" />
     </task>
     <servers />
   </component>
